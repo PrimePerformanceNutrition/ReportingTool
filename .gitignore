@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/ReadingPDFConcept/v15
+/ReadingPDFConcept/obj
+/ReadingPDFConcept/bin/Debug/netcoreapp2.2
