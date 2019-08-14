@@ -5,3 +5,12 @@
 /.vs/ReadingPDFConcept/v15
 /ReadingPDFConcept/obj
 /ReadingPDFConcept/bin/Debug/netcoreapp2.2
+/.vs/ReadingPDFConcept/DesignTimeBuild
+/.vs/ReadingPDFConcept/v16/Server/sqlite3
+/.vs/ReadingPDFConcept/v16/.suo
+/PpnReporting/.vs/PpnReporting/DesignTimeBuild
+/PpnReporting/.vs/PpnReporting/v16/Server/sqlite3
+/PpnReporting/.vs/PpnReporting/v16/.suo
+/PpnReporting/bin/Debug/netcoreapp3.0
+/PpnReporting/obj/Debug/netcoreapp3.0
+/PpnReporting/obj
