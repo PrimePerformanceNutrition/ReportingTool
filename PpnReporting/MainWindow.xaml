@@ -8,33 +8,6 @@
         Title="MainWindow" 
         SizeToContent="WidthAndHeight" >
     <Grid>
-        <DataGrid Name="LabsGrid" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Horse.Name}" Header="Name" />
-                <DataGridTextColumn Binding="{Binding LabDate}" Header="Lab Date" />
-                <DataGridTextColumn Binding="{Binding Calcium}" Header="Calcium"/>
-                <DataGridTextColumn Binding="{Binding Magnesium}" Header="Magnesium"/>
-                <DataGridTextColumn Binding="{Binding Sodium}" Header="Sodium" />
-                <DataGridTextColumn Binding="{Binding Potassium}" Header="Potassium" />
-                <DataGridTextColumn Binding="{Binding Copper}" Header="Copper"/>
-                <DataGridTextColumn Binding="{Binding Zinc}" Header="Zinc"/>
-                <DataGridTextColumn Binding="{Binding Manganese}" Header="Maganese"/>
-                <DataGridTextColumn Binding="{Binding Chromium}" Header="Chromium"/>
-                <DataGridTextColumn Binding="{Binding Vanadium}" Header="Vanadium" />
-                <DataGridTextColumn Binding="{Binding Molybdemnum}" Header="Molybdemnum" />
-                <DataGridTextColumn Binding="{Binding Boron}" Header="Boron" />
-                <DataGridTextColumn Binding="{Binding Iodine}" Header="Iodine" />
-                <DataGridTextColumn Binding="{Binding Lithium}" Header="Lithium" />
-                <DataGridTextColumn Binding="{Binding Phosphorus}" Header="Phosphorus"/>
-                <DataGridTextColumn Binding="{Binding Selenium}" Header="Selenium"/>
-                <DataGridTextColumn Binding="{Binding Strontium}" Header="Strontium"/>
-                <DataGridTextColumn Binding="{Binding Sulfur}" Header="Sulfur"/>
-                <DataGridTextColumn Binding="{Binding Cobalt}" Header="Cobalt"/>
-                <DataGridTextColumn Binding="{Binding Iron}" Header="Iron"/>
-                <DataGridTextColumn Binding="{Binding Germanium}" Header="Germanium"/>
-                <DataGridTextColumn Binding="{Binding Rubidium}" Header="Rubidium"/>
-                <DataGridTextColumn Binding="{Binding Zirconium}" Header="Zerconium" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <Frame x:Name="MainFrame"  />
     </Grid>
 </Window>

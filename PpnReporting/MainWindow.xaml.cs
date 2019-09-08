@@ -1,6 +1,7 @@
 ﻿using PpnReporting.BusinessLogic.Repos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,14 +19,13 @@ namespace PpnReporting
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IPpnRepo _ppnRepo;
-
-        public MainWindow(IPpnRepo ppnRepo)
+        private LabListing _labListingPage;
+        public MainWindow(LabListing labListingPage)
         {
-            _ppnRepo = ppnRepo;
+            _labListingPage = labListingPage;
             InitializeComponent();
 
-            LabsGrid.ItemsSource = _ppnRepo.GetLabs();
+            MainFrame.Content = _labListingPage;
         }
     }
 }

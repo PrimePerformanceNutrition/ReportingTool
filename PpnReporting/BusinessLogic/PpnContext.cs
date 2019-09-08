@@ -15,6 +15,7 @@ namespace PpnReporting.BusinessLogic
 
         public DbSet<Horse> Horses { get; set; }
         public DbSet<Lab> Labs { get; set; }
+        public DbSet<NutrientBulletPoint> NutrientBulletPoints { get; set; }
     }
 
     public class PpnContextFactory : IDesignTimeDbContextFactory<PpnContext>

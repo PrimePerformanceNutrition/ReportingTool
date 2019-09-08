@@ -56,6 +56,7 @@ namespace PpnReporting
                     Configuration.GetConnectionString("PrimePerformanceNutritionConnection")));
 
             services.AddTransient(typeof(MainWindow));
+            services.AddTransient(typeof(LabListing));            
             services.AddTransient<IPpnRepo, PpnRepo>();
         }
 

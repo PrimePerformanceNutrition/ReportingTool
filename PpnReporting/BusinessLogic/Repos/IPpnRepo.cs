@@ -1,4 +1,5 @@
 ﻿using PpnReporting.BusinessLogic.Models;
+using PpnReporting.BusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +10,9 @@ namespace PpnReporting.BusinessLogic.Repos
     public interface IPpnRepo
     {
         List<Lab> GetLabs();
+        Lab GetLab(Guid labId);
+        double NutrientAverage(string nutrientName);
+        ToleranceViewModel HighLowTolerance(double nutrientAverage);
+        List<NutrientBulletPoint> GetNutrientBulletPoints(string nutrient);
     }
 }
