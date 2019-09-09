@@ -7,6 +7,11 @@
       xmlns:local="clr-namespace:PpnReporting"
       mc:Ignorable="d"       
       Title="LabReport">
+    <Page.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Print" Click="MenuItem_Click" />
+        </ContextMenu>        
+    </Page.ContextMenu>
     <ScrollViewer>
         <Grid x:Name="chartGrid">
             <ItemsControl x:Name="chartItems">

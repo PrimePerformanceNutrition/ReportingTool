@@ -70,7 +70,6 @@ namespace PpnReporting
             Labels = new[] { nutrientName };
 
             BulletPoints = bulletPoints;
-
         }
 
         public List<NutrientBulletPoint> BulletPoints { get; set; }
