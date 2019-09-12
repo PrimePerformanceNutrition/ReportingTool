@@ -14,7 +14,7 @@
     </Page.ContextMenu>
     <ScrollViewer>
         <Grid x:Name="chartGrid">
-            <ItemsControl x:Name="chartItems">
+            <!--<ItemsControl x:Name="chartItems" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -22,7 +22,10 @@
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            </ItemsControl>-->
+            <DocumentViewer x:Name="DocViewer">
+                
+            </DocumentViewer>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -24,6 +24,7 @@ using System.Windows.Xps.Packaging;
 using System.Windows.Xps;
 using PdfSharp.Pdf;
 using PdfSharp.Drawing;
+using System.Windows.Markup;
 
 namespace PpnReporting
 {
@@ -47,7 +48,7 @@ namespace PpnReporting
             if (lab == null)
                 throw new NullReferenceException($"There is no lab in the database with a LabId of {labId}");
 
-            ProcessCharForEachNutrient(lab);            
+            ProcessCharForEachNutrient(lab);
         }
 
         private void ProcessCharForEachNutrient(Lab lab)
@@ -71,42 +72,102 @@ namespace PpnReporting
                 });
             }
 
-            chartItems.ItemsSource = labCharts;
+            var printDialog = new PrintDialog();            
+            var fixedDocument = new FixedDocument();
+
+            fixedDocument.DocumentPaginator.PageSize =
+                new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+
+            var fixedPage = CreateFixedPage(
+                fixedDocument.DocumentPaginator.PageSize.Width,
+                fixedDocument.DocumentPaginator.PageSize.Height
+            );
+
+            var pageContent = new PageContent();
+            var stackPanel = new StackPanel
+            {
+                Width = fixedDocument.DocumentPaginator.PageSize.Width                
+            };
+
+            
+
+            for (var i = 0; i < labCharts.Count; i++)
+            {                
+                stackPanel.Children.Add(labCharts[i].LabChart);                           
+
+                if (i % 3 == 0)
+                {
+                    fixedPage.Children.Add(stackPanel);
+                    ((IAddChild)pageContent).AddChild(fixedPage);
+                    fixedDocument.Pages.Add(pageContent);
+
+                    // recreate pageContent and fixedPage
+                    fixedPage = CreateFixedPage(
+                        fixedDocument.DocumentPaginator.PageSize.Width,
+                        fixedDocument.DocumentPaginator.PageSize.Height
+                    );
+
+                    pageContent = new PageContent();
+                    stackPanel = new StackPanel
+                    {
+                        Width = fixedDocument.DocumentPaginator.PageSize.Width
+                    };
+                }
+            }
+
+            DocViewer.Document = fixedDocument;
+
+
+
+            //chartItems.ItemsSource = labCharts;
+
+        }
+
+        private FixedPage CreateFixedPage(double width, double height)
+        {
+            return new FixedPage
+            {
+                Width = width,
+                Height = height
+            };
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new SaveFileDialog();
+            DocViewer.Print();
 
-            dialog.AddExtension = true;
-            dialog.DefaultExt = "pdf";
-            dialog.Filter = "PDF Document (*.pdf)|*.pdf";
-            dialog.FileName = "test"; // TODO give correct name
+            //var dialog = new SaveFileDialog();
 
-            if (dialog.ShowDialog() == false)
-                return;
+            //dialog.AddExtension = true;
+            //dialog.DefaultExt = "pdf";
+            //dialog.Filter = "PDF Document (*.pdf)|*.pdf";
+            //dialog.FileName = "test"; // TODO give correct name
 
-            var image = new WriteableBitmap(CreateBitmap(this));
+            //if (dialog.ShowDialog() == false)
+            //    return;
 
-            var pdf = new PdfDocument();
-            var page = new PdfPage();
-            pdf.Pages.Add(page);
+            //var image = new WriteableBitmap(CreateBitmap());
 
-            var xGraphics = XGraphics.FromPdfPage(pdf.Pages[0]);
+            //var pdf = new PdfDocument();
+            //var page = new PdfPage();
+            //pdf.Pages.Add(page);
 
-            Stream bitMapStream;
+            //var xGraphics = XGraphics.FromPdfPage(pdf.Pages[0]);
 
-            using(bitMapStream = new MemoryStream())
-            {
-                var encoder = new BmpBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(image));
-                encoder.Save(bitMapStream);
-                var xImage = XImage.FromStream(bitMapStream);
-                xGraphics.DrawImage(xImage, 0, 0);
-            }
+            //Stream bitMapStream;
 
-            pdf.Save(dialog.FileName);
-            pdf.Close();
+            //using (bitMapStream = new MemoryStream())
+            //{
+            //    var encoder = new BmpBitmapEncoder();
+            //    encoder.Frames.Add(BitmapFrame.Create(image));
+            //    encoder.Save(bitMapStream);
+            //    var xImage = XImage.FromStream(bitMapStream);
+            //    xGraphics.DrawImage(xImage, 0, 0);
+            //}
+
+            //pdf.Save(dialog.FileName);
+            //pdf.Close();
         }
 
         public BitmapSource CreateBitmap(FrameworkElement element)
@@ -118,7 +179,7 @@ namespace PpnReporting
             height = height == 0 ? 1 : height;
 
             // render element to image (WPF)  
-            RenderTargetBitmap rtbmp = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Default);            
+            RenderTargetBitmap rtbmp = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Default);
             rtbmp.Render(element);
             return rtbmp;
         }
