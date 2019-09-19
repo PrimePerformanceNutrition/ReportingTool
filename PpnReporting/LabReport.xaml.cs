@@ -73,15 +73,18 @@ namespace PpnReporting
             }
 
             var printDialog = new PrintDialog();            
-            var fixedDocument = new FixedDocument();
+            var fixedDocument = new FixedDocument();            
 
             fixedDocument.DocumentPaginator.PageSize =
-                new Size(printDialog.PrintableAreaWidth, printDialog.PrintableAreaHeight);
+                new Size(
+                    printDialog.PrintableAreaHeight,
+                    printDialog.PrintableAreaWidth
+                );
 
             var fixedPage = CreateFixedPage(
                 fixedDocument.DocumentPaginator.PageSize.Width,
                 fixedDocument.DocumentPaginator.PageSize.Height
-            );
+            );            
 
             var pageContent = new PageContent();
             var stackPanel = new StackPanel
@@ -89,13 +92,11 @@ namespace PpnReporting
                 Width = fixedDocument.DocumentPaginator.PageSize.Width                
             };
 
-            
-
             for (var i = 0; i < labCharts.Count; i++)
             {                
                 stackPanel.Children.Add(labCharts[i].LabChart);                           
 
-                if (i % 3 == 0)
+                if (i >= 1 && i % 2 == 1)
                 {
                     fixedPage.Children.Add(stackPanel);
                     ((IAddChild)pageContent).AddChild(fixedPage);
@@ -116,11 +117,6 @@ namespace PpnReporting
             }
 
             DocViewer.Document = fixedDocument;
-
-
-
-            //chartItems.ItemsSource = labCharts;
-
         }
 
         private FixedPage CreateFixedPage(double width, double height)

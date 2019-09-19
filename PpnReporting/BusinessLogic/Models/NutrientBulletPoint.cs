@@ -11,5 +11,9 @@ namespace PpnReporting.BusinessLogic.Models
         public int Id { get; set; }
         public string NutrientName { get; set; }
         public string BulletPoint { get; set; }
+        // Either Excessive or Deficient
+        public  string Range { get; set; }
     }
+
+    
 }
