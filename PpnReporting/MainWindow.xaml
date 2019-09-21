@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PpnReporting"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        SizeToContent="WidthAndHeight" >
+        Title="PPN Reporting Tool" 
+        Height ="{ x:Static SystemParameters.PrimaryScreenHeight }" 
+        Width ="{ x:Static SystemParameters.PrimaryScreenWidth }"
+        WindowState="Maximized">
     
     <Grid>        
         <Frame x:Name="MainFrame" />

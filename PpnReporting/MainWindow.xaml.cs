@@ -24,7 +24,7 @@ namespace PpnReporting
         {
             _labListingPage = labListingPage;
             InitializeComponent();
-
+            
             MainFrame.Content = _labListingPage;
         }
     }
