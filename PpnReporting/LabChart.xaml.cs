@@ -43,38 +43,45 @@ namespace PpnReporting
                 new ColumnSeries
                 {
                     Title = horseName,
-                    Values = new ChartValues<double> { nutrientValue },
-
+                    Values = new ChartValues<double> { Math.Round(nutrientValue, 2) },
+                    PointGeometry = null,
+                    LabelPoint = point => ""
                 },
                 new ColumnSeries
                 {
                     Title = "All Horses Average",
-                    Values = new ChartValues<double> { nutrientAverage }
+                    Values = new ChartValues<double> { Math.Round(nutrientAverage, 2) },
+                    PointGeometry = null,
+                    LabelPoint = point => ""
                 },
                 new StepLineSeries
                 {
                     Title = "High Tolerance",
-                    Values = new ChartValues<double> { nutrientTolerances.HighTolerance, nutrientTolerances.HighTolerance },
-                    PointGeometry = null
+                    Values = new ChartValues<double> { Math.Round(nutrientTolerances.HighTolerance, 2), Math.Round(nutrientTolerances.HighTolerance, 2) },
+                    PointGeometry = null,
+                    LabelPoint = point => ""
                 },
                 new StepLineSeries
                 {
                     Title = "Low Tolerance",
-                    Values = new ChartValues<double> { nutrientTolerances.LowTolerance, nutrientTolerances.LowTolerance },
-                    PointGeometry = null
-
+                    Values = new ChartValues<double> { Math.Round(nutrientTolerances.LowTolerance, 2), Math.Round(nutrientTolerances.LowTolerance, 2) },
+                    PointGeometry = null,
+                    LabelPoint = point => ""
                 }
             };
 
             DataContext = this;
             Labels = new[] { nutrientName };
-
+            NutrientName = nutrientName;
             BulletPoints = bulletPoints;
+
+            Formatter = value => Math.Round(value, 2).ToString();
         }
 
         public List<NutrientBulletPoint> BulletPoints { get; set; }
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
+        public string NutrientName { get; set; }
     }
 }

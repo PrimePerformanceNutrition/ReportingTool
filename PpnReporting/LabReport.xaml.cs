@@ -77,8 +77,8 @@ namespace PpnReporting
 
             fixedDocument.DocumentPaginator.PageSize =
                 new Size(
-                    printDialog.PrintableAreaHeight,
-                    printDialog.PrintableAreaWidth
+                    printDialog.PrintableAreaWidth,
+                    printDialog.PrintableAreaHeight
                 );
 
             var fixedPage = CreateFixedPage(
@@ -96,7 +96,7 @@ namespace PpnReporting
             {                
                 stackPanel.Children.Add(labCharts[i].LabChart);                           
 
-                if (i >= 1 && i % 2 == 1)
+                if ((i +1) % 3 == 0) 
                 {
                     fixedPage.Children.Add(stackPanel);
                     ((IAddChild)pageContent).AddChild(fixedPage);
@@ -114,6 +114,8 @@ namespace PpnReporting
                         Width = fixedDocument.DocumentPaginator.PageSize.Width
                     };
                 }
+
+                // TODO : figure out if there is a remainder to accomodate
             }
 
             DocViewer.Document = fixedDocument;
