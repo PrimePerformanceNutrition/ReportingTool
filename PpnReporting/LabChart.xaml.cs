@@ -44,36 +44,39 @@ namespace PpnReporting
                 {
                     Title = horseName,
                     Values = new ChartValues<double> { Math.Round(nutrientValue, 2) },
-                    PointGeometry = null,
-                    LabelPoint = point => ""
+                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
                 },
                 new ColumnSeries
                 {
                     Title = "All Horses Average",
                     Values = new ChartValues<double> { Math.Round(nutrientAverage, 2) },
-                    PointGeometry = null,
-                    LabelPoint = point => ""
+                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
                 },
                 new StepLineSeries
                 {
                     Title = "High Tolerance",
                     Values = new ChartValues<double> { Math.Round(nutrientTolerances.HighTolerance, 2), Math.Round(nutrientTolerances.HighTolerance, 2) },
-                    PointGeometry = null,
-                    LabelPoint = point => ""
+                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
                 },
                 new StepLineSeries
                 {
                     Title = "Low Tolerance",
                     Values = new ChartValues<double> { Math.Round(nutrientTolerances.LowTolerance, 2), Math.Round(nutrientTolerances.LowTolerance, 2) },
-                    PointGeometry = null,
-                    LabelPoint = point => ""
+                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
                 }
             };
 
             DataContext = this;
             Labels = new[] { nutrientName };
             NutrientName = nutrientName;
-            BulletPoints = bulletPoints;
+
+            if (nutrientValue > nutrientTolerances.HighTolerance)
+                BulletPoints = bulletPoints.Where(bp => bp.Range == "Excessive").ToList();
+            else if (nutrientValue < nutrientTolerances.LowTolerance)
+                BulletPoints = bulletPoints.Where(bp => bp.Range == "Deficient").ToList();
+            else
+                BulletPoints = null;
+            
 
             Formatter = value => Math.Round(value, 2).ToString();
         }

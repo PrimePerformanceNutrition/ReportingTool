@@ -84,7 +84,9 @@ namespace PpnReporting
             var fixedPage = CreateFixedPage(
                 fixedDocument.DocumentPaginator.PageSize.Width,
                 fixedDocument.DocumentPaginator.PageSize.Height
-            );            
+            );         
+            
+            // handle first page
 
             var pageContent = new PageContent();
             var stackPanel = new StackPanel
