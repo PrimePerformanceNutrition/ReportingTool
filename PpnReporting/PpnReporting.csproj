@@ -11,6 +11,7 @@
     <None Remove="appsettings.Development.json" />
     <None Remove="appsettings.json" />
     <None Remove="appsettings.Production.json" />
+    <None Remove="Content\FINALPRIMEPLOGO.jpg" />
     <None Remove="Content\PPNIcon.png" />
     <None Remove="Fonts\OpenSansCondensed-Bold.ttf" />
     <None Remove="Fonts\OpenSansCondensed-Light.ttf" />
@@ -29,6 +30,9 @@
     <Content Include="appsettings.Production.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>appsettings.json</DependentUpon>
+    </Content>
+    <Content Include="Content\FINALPRIMEPLOGO.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\PPNIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -53,9 +57,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fonts\OpenSansCondensed-Bold.ttf" />
-    <Resource Include="Fonts\OpenSansCondensed-Light.ttf" />
-    <Resource Include="Fonts\OpenSansCondensed-LightItalic.ttf" />
+    <Content Include="Fonts\OpenSansCondensed-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\OpenSansCondensed-Light.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\OpenSansCondensed-LightItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   
   <!-- app settings files dependency settings -->

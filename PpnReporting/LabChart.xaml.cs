@@ -51,19 +51,19 @@ namespace PpnReporting
                     Title = "All Horses Average",
                     Values = new ChartValues<double> { Math.Round(nutrientAverage, 2) },
                     FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
-                },
-                new StepLineSeries
-                {
-                    Title = "High Tolerance",
-                    Values = new ChartValues<double> { Math.Round(nutrientTolerances.HighTolerance, 2), Math.Round(nutrientTolerances.HighTolerance, 2) },
-                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
-                },
-                new StepLineSeries
-                {
-                    Title = "Low Tolerance",
-                    Values = new ChartValues<double> { Math.Round(nutrientTolerances.LowTolerance, 2), Math.Round(nutrientTolerances.LowTolerance, 2) },
-                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
-                }
+                }//,
+                //new StepLineSeries
+                //{
+                //    Title = "High Tolerance",
+                //    Values = new ChartValues<double> { Math.Round(nutrientTolerances.HighTolerance, 2), Math.Round(nutrientTolerances.HighTolerance, 2) },
+                //    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
+                //},
+                //new StepLineSeries
+                //{
+                //    Title = "Low Tolerance",
+                //    Values = new ChartValues<double> { Math.Round(nutrientTolerances.LowTolerance, 2), Math.Round(nutrientTolerances.LowTolerance, 2) },
+                //    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
+                //}
             };
 
             DataContext = this;

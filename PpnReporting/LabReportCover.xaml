@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="PpnReporting.LabReportCover"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PpnReporting"
+             mc:Ignorable="d" 
+             d:DesignWidth="800"
+             Background="White">
+    
+    <StackPanel 
+        Margin="15"
+        x:Name="MainStackPanel"
+        Width="{Binding PanelWidth}"
+        Height="{Binding PanelHeight}">
+        
+        <Image 
+            Source="/Content/FINALPRIMEPLOGO.jpg" />
+        
+        <TextBlock 
+            Text="20573 Country Road 297 Cosby MO 64436 USA (888) 457-4235 info@primeperformancenutrition.com" 
+            TextAlignment="Center"
+            FontFamily="./Fonts/#Open Sans Condensed Light" 
+            FontSize="12pt"/>
+
+        <StackPanel 
+            Margin="0, 50, 0, 0">
+            
+            <TextBlock
+                x:Name="LabNumber"
+                Text="LAB #: H190913-2303-1"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="SampleID"
+                Text="Sample ID: BOOMER-00013"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="HorseName"
+                Text="Horse Name: Boomer"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="Age"
+                Text="Age: 10"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="Breed"
+                Text="Breed: Quarter Horse"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="Sex"
+                Text="Sex: Gelding"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="Discipline"
+                Text="Discipline: Barrel race"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="CustomerName"
+                Text="Customer Name: Kristin"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="Address"
+                Text="1234"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="PhoneNumber"
+                Text="Phone Number: (816)123-4567"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+
+            <TextBlock
+                x:Name="EmailAddress"
+                Text="Email Address: info@ppn.com"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+        </StackPanel>
+
+        <StackPanel
+            Margin="0, 20, 0, 0">
+
+            <TextBlock
+                x:Name="DisclaimerParagraphOne"
+                Text="The included test results have been generated in a Federally licensed CLIA Laboratory with all appropriate state certifications and licenses. This laboratory participates in quality and proficiency testing programs including those offered by the College of American Pathology (CAP) and Centers of Disease Control (CDC)."
+                FontFamily="./Fonts/#Open Sans Condensed Light" 
+                TextWrapping="Wrap"/>
+
+            <TextBlock
+                x:Name="DisclaimerParaghraphTwo"
+                Text="All hair samples are washed using a procedure developed by the International Atomic Energy Agency (IAEA). Washing the samples ensures that all external contaminants have been removed and we are reporting to the doctor only what has been excreted into the hair."
+                FontFamily="./Fonts/#Open Sans Condensed Light" 
+                TextWrapping="Wrap"
+                Margin="0, 20, 0, 0" />
+
+            <TextBlock
+                x:Name="DisclaimerParagraphThree"
+                Text="Hair element analysis is a valuable and inexpensive screen for physiological excess, deficiency or maldistribution of elements. It should not be considered a stand-alone diagnostic test for essential element function, and should be used in conjunction with patient symptoms and other laboratory tests as conducted by your veterinarian."
+                FontFamily="./Fonts/#Open Sans Condensed Light"  
+                TextWrapping="Wrap"
+                Margin="0, 20, 0, 0" />
+
+        </StackPanel>
+
+        <!--<StackPanel
+            Margin="0, 20, 0, 0">
+            <TextBlock
+                Text="Overall Element Profile Rating"
+                FontFamily="./Fonts/#Open Sans Condensed Light"  
+                TextWrapping="Wrap"
+                FontWeight="Bold"
+                FontSize="18pt" 
+                TextAlignment="Center"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock 
+                    Grid.Row="0" 
+                    Grid.Column="0"
+                    x:Name="HorseNameProfileRating"
+                    FontFamily="./Fonts/#Open Sans Condensed Light"  
+                    Text="Sample"
+                    TextAlignment="Right"/>
+
+                <TextBlock
+                    Grid.Row="0" 
+                    Grid.Column="1"
+                    FontFamily="./Fonts/#Open Sans Condensed Light" 
+                    Text="All Other" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="HorseAverageValue"
+                    FontFamily="./Fonts/#Open Sans Condensed Light" 
+                    Text="433"
+                    TextAlignment="Right"/>
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="AllHorseAverageValue"
+                    FontFamily="./Fonts/#Open Sans Condensed Light" 
+                    Text="545" />
+
+            </Grid>
+                
+            
+            
+        </StackPanel>-->
+
+    </StackPanel>
+</UserControl>

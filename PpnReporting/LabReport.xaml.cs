@@ -87,12 +87,28 @@ namespace PpnReporting
             );         
             
             // handle first page
-
             var pageContent = new PageContent();
+
+            fixedPage.Children.Add(new LabReportCover(
+                    fixedDocument.DocumentPaginator.PageSize.Width,
+                    fixedDocument.DocumentPaginator.PageSize.Height));
+
+            ((IAddChild)pageContent).AddChild(fixedPage);
+            fixedDocument.Pages.Add(pageContent);
+
+
+
+            fixedPage = CreateFixedPage(
+                        fixedDocument.DocumentPaginator.PageSize.Width,
+                        fixedDocument.DocumentPaginator.PageSize.Height
+                    );
+
+            pageContent = new PageContent();
             var stackPanel = new StackPanel
             {
-                Width = fixedDocument.DocumentPaginator.PageSize.Width                
+                Width = fixedDocument.DocumentPaginator.PageSize.Width
             };
+
 
             for (var i = 0; i < labCharts.Count; i++)
             {                

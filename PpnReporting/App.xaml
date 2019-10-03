@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:PpnReporting">
     <Application.Resources>
         <ResourceDictionary>
-            
+            <FontFamily x:Key="OpenSansCondensedLight">pack://application,,,/Fonts/#Open Sans Condensed Light</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

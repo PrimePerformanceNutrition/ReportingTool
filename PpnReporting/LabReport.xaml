@@ -14,18 +14,7 @@
     </Page.ContextMenu>
     <ScrollViewer>
         <Grid x:Name="chartGrid">
-            <!--<ItemsControl x:Name="chartItems" >
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <local:LabChart Grid.Column="0" DataContext="{Binding LabChart}" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>-->
-            <DocumentViewer x:Name="DocViewer">
-                
-            </DocumentViewer>
+            <DocumentViewer x:Name="DocViewer"></DocumentViewer>
         </Grid>
     </ScrollViewer>
 </Page>
