@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PpnReporting.BusinessLogic;
 
 namespace PpnReporting.Migrations
 {
     [DbContext(typeof(PpnContext))]
-    partial class PpnContextModelSnapshot : ModelSnapshot
+    [Migration("20191006165749_LabNumberAddition")]
+    partial class LabNumberAddition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,8 +24,7 @@ namespace PpnReporting.Migrations
             modelBuilder.Entity("PpnReporting.BusinessLogic.Models.Horse", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");
 
@@ -51,8 +52,7 @@ namespace PpnReporting.Migrations
             modelBuilder.Entity("PpnReporting.BusinessLogic.Models.Lab", b =>
                 {
                     b.Property<Guid>("LabId")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<double>("Aluminum");
 

@@ -13,6 +13,14 @@ namespace PpnReporting.BusinessLogic
     {
         public PpnContext(DbContextOptions<PpnContext> options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Lab>().Property(p => p.LabId).HasDefaultValueSql("NEWSEQUENTIALID()");
+            modelBuilder.Entity<Horse>().Property(p => p.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
+        }
+
         public DbSet<Horse> Horses { get; set; }
         public DbSet<Lab> Labs { get; set; }
         public DbSet<NutrientBulletPoint> NutrientBulletPoints { get; set; }

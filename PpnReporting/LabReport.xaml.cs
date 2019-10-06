@@ -26,6 +26,7 @@ using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.Windows.Markup;
 
+
 namespace PpnReporting
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace PpnReporting
     public partial class LabReport : Page
     {
         private readonly IPpnRepo _ppnRepo;
+        private FixedDocument _printableDocument;
         public LabReport()
         {
             InitializeComponent();
@@ -61,8 +63,12 @@ namespace PpnReporting
 
             foreach (var property in properties)
             {
-                // Skip LabId, Horse, and LabDate
-                if (property.Name == nameof(lab.LabId) || property.Name == nameof(lab.Horse) || property.Name == nameof(lab.LabDate))
+                // Skip LabId, Horse, LabDate, LabNumber and SampleId
+                if (property.Name == nameof(lab.LabId) 
+                    || property.Name == nameof(lab.Horse) 
+                    || property.Name == nameof(lab.LabDate) 
+                    || property.Name == nameof(lab.LabNumber) 
+                    || property.Name == nameof(lab.SampleId))
                     continue;
 
                 var propertyValue = (double)property.GetValue(lab);
@@ -152,6 +158,7 @@ namespace PpnReporting
             }
 
             DocViewer.Document = fixedDocument;
+            _printableDocument = fixedDocument;
         }
 
         private FixedPage CreateFixedPage(double width, double height)
@@ -161,58 +168,33 @@ namespace PpnReporting
                 Width = width,
                 Height = height
             };
-
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            DocViewer.Print();
-
-            //var dialog = new SaveFileDialog();
-
-            //dialog.AddExtension = true;
-            //dialog.DefaultExt = "pdf";
-            //dialog.Filter = "PDF Document (*.pdf)|*.pdf";
+            var dialog = new SaveFileDialog
+            {
+                AddExtension = true,
+                DefaultExt = "pdf",
+                Filter = "PDF Document (*.pdf)|*.pdf"
+            };
             //dialog.FileName = "test"; // TODO give correct name
 
-            //if (dialog.ShowDialog() == false)
-            //    return;
+            if (dialog.ShowDialog() == false)
+                return;
 
-            //var image = new WriteableBitmap(CreateBitmap());
+            string targetFile = System.IO.Path.GetTempFileName();
+            System.Diagnostics.Debug.Print(targetFile);
 
-            //var pdf = new PdfDocument();
-            //var page = new PdfPage();
-            //pdf.Pages.Add(page);
+            var xpsDocument = new XpsDocument(targetFile, FileAccess.ReadWrite);
+            var xpsWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+            xpsWriter.Write(_printableDocument);
+            xpsDocument.Close();
 
-            //var xGraphics = XGraphics.FromPdfPage(pdf.Pages[0]);
-
-            //Stream bitMapStream;
-
-            //using (bitMapStream = new MemoryStream())
-            //{
-            //    var encoder = new BmpBitmapEncoder();
-            //    encoder.Frames.Add(BitmapFrame.Create(image));
-            //    encoder.Save(bitMapStream);
-            //    var xImage = XImage.FromStream(bitMapStream);
-            //    xGraphics.DrawImage(xImage, 0, 0);
-            //}
-
-            //pdf.Save(dialog.FileName);
-            //pdf.Close();
-        }
-
-        public BitmapSource CreateBitmap(FrameworkElement element)
-        {
-            int width = (int)Math.Ceiling(element.ActualWidth);
-            int height = (int)Math.Ceiling(element.ActualHeight);
-
-            width = width == 0 ? 1 : width;
-            height = height == 0 ? 1 : height;
-
-            // render element to image (WPF)  
-            RenderTargetBitmap rtbmp = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Default);
-            rtbmp.Render(element);
-            return rtbmp;
+            var pdfXpsDoc = PdfSharp.Xps.XpsModel.XpsDocument.Open(targetFile);
+            PdfSharp.Xps.XpsConverter.Convert(pdfXpsDoc, dialog.FileName, 0);
+            
+            // TODO: Delete xps
         }
     }
 }

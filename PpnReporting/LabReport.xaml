@@ -7,14 +7,18 @@
       xmlns:local="clr-namespace:PpnReporting"
       mc:Ignorable="d"       
       Title="LabReport">
-    <Page.ContextMenu>
+    <!--<Page.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Print" Click="MenuItem_Click" />
         </ContextMenu>        
-    </Page.ContextMenu>
+    </Page.ContextMenu>-->
     <ScrollViewer>
         <Grid x:Name="chartGrid">
-            <DocumentViewer x:Name="DocViewer"></DocumentViewer>
+            <DocumentViewer x:Name="DocViewer">
+                <DocumentViewer.CommandBindings>
+                    <CommandBinding Command="ApplicationCommands.Print" Executed="MenuItem_Click" />
+                </DocumentViewer.CommandBindings>
+            </DocumentViewer>
         </Grid>
     </ScrollViewer>
 </Page>

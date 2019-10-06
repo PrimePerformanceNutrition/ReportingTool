@@ -4,6 +4,7 @@ using PpnReporting.BusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,10 +34,12 @@ namespace PpnReporting.BusinessLogic.Repos
         {
             var t = typeof(Lab);
             var property = t.GetProperty(nutrientName);
-            var nutrientAverage = _db.Labs
+            var name = property.Name;
+            var nutrientList = _db.Labs
                 .Select(lab => (double)property.GetValue(lab))
-                .Average();
+                .ToList();
 
+            var nutrientAverage = nutrientList.Average(x => x);
             return nutrientAverage;
         }
 

@@ -9,8 +9,10 @@ namespace PpnReporting.BusinessLogic.Models
     public class Lab
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid LabId { get; set; }
+
+        public string LabNumber { get; set; }
 
         public string SampleId { get; set; }
 
