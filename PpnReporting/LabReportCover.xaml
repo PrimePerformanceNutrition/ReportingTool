@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PpnReporting"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignWidth="800"
              Background="White">
+    <UserControl.Resources>
+        <FontFamily x:Key="OpenSansCondensedLight">pack://application:,,,/Fonts/#Open Sans Condensed Light</FontFamily>        
+    </UserControl.Resources>
     
     <StackPanel 
         Margin="15"
@@ -15,13 +19,14 @@
         Height="{Binding PanelHeight}">
         
         <Image 
-            Source="/Content/FINALPRIMEPLOGO.jpg" />
+            Source="/Content/FINALPRIMEPLOGO.jpg"
+            Margin="0, 0, 20, 0"/>
         
         <TextBlock 
             Text="20573 Country Road 297 Cosby MO 64436 USA (888) 457-4235 info@primeperformancenutrition.com" 
             TextAlignment="Center"
-            FontFamily="./Fonts/#Open Sans Condensed Light" 
-            FontSize="12pt"/>
+            FontFamily="{StaticResource OpenSansCondensedLight}" 
+            FontSize="16pt"/>
 
         <StackPanel 
             Margin="0, 50, 0, 0">
@@ -29,138 +34,136 @@
             <TextBlock
                 x:Name="LabNumber"
                 Text="LAB #: H190913-2303-1"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="SampleID"
                 Text="Sample ID: BOOMER-00013"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="HorseName"
                 Text="Horse Name: Boomer"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="Age"
                 Text="Age: 10"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="Breed"
                 Text="Breed: Quarter Horse"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="Sex"
                 Text="Sex: Gelding"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="Discipline"
                 Text="Discipline: Barrel race"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="CustomerName"
                 Text="Customer Name: Kristin"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="Address"
                 Text="1234"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="PhoneNumber"
                 Text="Phone Number: (816)123-4567"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="EmailAddress"
                 Text="Email Address: info@ppn.com"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  />
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                FontSize="12pt" />
         </StackPanel>
 
         <StackPanel
-            Margin="0, 20, 0, 0">
+            Margin="0, 20, 20, 0">
 
             <TextBlock
                 x:Name="DisclaimerParagraphOne"
                 Text="The included test results have been generated in a Federally licensed CLIA Laboratory with all appropriate state certifications and licenses. This laboratory participates in quality and proficiency testing programs including those offered by the College of American Pathology (CAP) and Centers of Disease Control (CDC)."
-                FontFamily="./Fonts/#Open Sans Condensed Light" 
-                TextWrapping="Wrap"/>
+                FontFamily="{StaticResource OpenSansCondensedLight}" 
+                TextWrapping="Wrap"
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="DisclaimerParaghraphTwo"
                 Text="All hair samples are washed using a procedure developed by the International Atomic Energy Agency (IAEA). Washing the samples ensures that all external contaminants have been removed and we are reporting to the doctor only what has been excreted into the hair."
-                FontFamily="./Fonts/#Open Sans Condensed Light" 
+                FontFamily="{StaticResource OpenSansCondensedLight}" 
                 TextWrapping="Wrap"
-                Margin="0, 20, 0, 0" />
+                Margin="0, 20, 0, 0" 
+                FontSize="12pt" />
 
             <TextBlock
                 x:Name="DisclaimerParagraphThree"
                 Text="Hair element analysis is a valuable and inexpensive screen for physiological excess, deficiency or maldistribution of elements. It should not be considered a stand-alone diagnostic test for essential element function, and should be used in conjunction with patient symptoms and other laboratory tests as conducted by your veterinarian."
-                FontFamily="./Fonts/#Open Sans Condensed Light"  
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
                 TextWrapping="Wrap"
-                Margin="0, 20, 0, 0" />
+                Margin="0, 20, 0, 0" 
+                FontSize="12pt" />
 
         </StackPanel>
 
-        <!--<StackPanel
+        <StackPanel
             Margin="0, 20, 0, 0">
             <TextBlock
                 Text="Overall Element Profile Rating"
-                FontFamily="./Fonts/#Open Sans Condensed Light"  
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
                 TextWrapping="Wrap"
                 FontWeight="Bold"
-                FontSize="18pt" 
-                TextAlignment="Center"/>
+                FontSize="20pt" 
+                TextAlignment="Center"
+                TextDecorations="Underline"/>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            <lvc:CartesianChart 
+                Series="{Binding SeriesCollection}" 
+                LegendLocation="Top"
+                Margin="0, 75, 0, 0"
+                MinHeight="100px"
+                DisableAnimations="True"
+                HorizontalAlignment="Center"
+                MinWidth="400px">
 
-                <TextBlock 
-                    Grid.Row="0" 
-                    Grid.Column="0"
-                    x:Name="HorseNameProfileRating"
-                    FontFamily="./Fonts/#Open Sans Condensed Light"  
-                    Text="Sample"
-                    TextAlignment="Right"/>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis ShowLabels="False">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator IsEnabled="False"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
 
-                <TextBlock
-                    Grid.Row="0" 
-                    Grid.Column="1"
-                    FontFamily="./Fonts/#Open Sans Condensed Light" 
-                    Text="All Other" />
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis ShowLabels="False">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator IsEnabled="False"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
 
-                <TextBlock
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    x:Name="HorseAverageValue"
-                    FontFamily="./Fonts/#Open Sans Condensed Light" 
-                    Text="433"
-                    TextAlignment="Right"/>
-
-                <TextBlock
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    x:Name="AllHorseAverageValue"
-                    FontFamily="./Fonts/#Open Sans Condensed Light" 
-                    Text="545" />
-
-            </Grid>
-                
-            
-            
-        </StackPanel>-->
+            </lvc:CartesianChart>
+        </StackPanel>
 
     </StackPanel>
 </UserControl>

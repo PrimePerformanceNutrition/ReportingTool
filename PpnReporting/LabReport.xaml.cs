@@ -56,6 +56,8 @@ namespace PpnReporting
             var properties = lab.GetType().GetProperties();
             var horseName = lab.Horse.Name;
             var labCharts = new List<LabNutrientViewModel>();
+            var propertyValues = new List<double>();
+            var allHorseNurtientAverages = new List<double>();
 
             foreach (var property in properties)
             {
@@ -64,6 +66,10 @@ namespace PpnReporting
                     continue;
 
                 var propertyValue = (double)property.GetValue(lab);
+                propertyValues.Add(propertyValue);
+
+                allHorseNurtientAverages.Add(_ppnRepo.NutrientAverage(property.Name));
+
                 // TODO Add bullet points
                 labCharts.Add(new LabNutrientViewModel
                 {
@@ -71,6 +77,12 @@ namespace PpnReporting
                         bulletPoints: _ppnRepo.GetNutrientBulletPoints(property.Name))
                 });
             }
+
+            // TODO: Get the Average of all of the property values of all horses, then to an average of that average
+            var allHorsesOverallAverage = allHorseNurtientAverages.Average();
+
+            // TODO : Take an average of all of the property values
+            var horseaverage = propertyValues.Average();
 
             var printDialog = new PrintDialog();            
             var fixedDocument = new FixedDocument();            
@@ -91,7 +103,10 @@ namespace PpnReporting
 
             fixedPage.Children.Add(new LabReportCover(
                     fixedDocument.DocumentPaginator.PageSize.Width,
-                    fixedDocument.DocumentPaginator.PageSize.Height));
+                    fixedDocument.DocumentPaginator.PageSize.Height,
+                    horseaverage,
+                    allHorsesOverallAverage,
+                    lab));
 
             ((IAddChild)pageContent).AddChild(fixedPage);
             fixedDocument.Pages.Add(pageContent);

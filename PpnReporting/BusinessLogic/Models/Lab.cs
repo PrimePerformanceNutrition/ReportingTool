@@ -12,6 +12,10 @@ namespace PpnReporting.BusinessLogic.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid LabId { get; set; }
 
+        public string SampleId { get; set; }
+
+        #region Essential Nutrients
+
         public Horse Horse { get; set; }
 
         public DateTime LabDate { get; set; }
@@ -59,5 +63,30 @@ namespace PpnReporting.BusinessLogic.Models
         public double Rubidium { get; set; }
 
         public double Zirconium { get; set; }
+
+        #endregion Essential Nutrients
+
+        #region Heavy Metals
+
+        public double Aluminum { get; set; }
+        public double Antimony { get; set; }
+        public double Arsenic { get; set; }
+        public double Barium { get; set; }
+        public double Beryllium { get; set; }
+        public double Bismuth { get; set; }
+        public double Cadmium { get; set; }
+        public double Lead { get; set; }
+        public double Mercury { get; set; }
+        public double Plantinum { get; set; }
+        public double Thallium { get; set; }
+        public double Thorium { get; set; }
+        public double Uranium { get; set; }
+        public double Nickel { get; set; }
+        public double Silver { get; set; }
+        public double Tin { get; set; }
+        public double Titanium { get; set; }
+        
+        #endregion Heavy Metals
+
     }
 }

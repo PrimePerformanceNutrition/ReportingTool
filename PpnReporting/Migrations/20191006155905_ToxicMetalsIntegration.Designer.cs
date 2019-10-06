@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PpnReporting.BusinessLogic;
 
 namespace PpnReporting.Migrations
 {
     [DbContext(typeof(PpnContext))]
-    partial class PpnContextModelSnapshot : ModelSnapshot
+    [Migration("20191006155905_ToxicMetalsIntegration")]
+    partial class ToxicMetalsIntegration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,23 +26,7 @@ namespace PpnReporting.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
-
-                    b.Property<int>("Age");
-
-                    b.Property<string>("Breed");
-
-                    b.Property<string>("CustomerName");
-
-                    b.Property<string>("Discipline");
-
-                    b.Property<string>("EmailAddress");
-
                     b.Property<string>("Name");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("Sex");
 
                     b.HasKey("Id");
 
@@ -106,8 +92,6 @@ namespace PpnReporting.Migrations
                     b.Property<double>("Potassium");
 
                     b.Property<double>("Rubidium");
-
-                    b.Property<string>("SampleId");
 
                     b.Property<double>("Selenium");
 

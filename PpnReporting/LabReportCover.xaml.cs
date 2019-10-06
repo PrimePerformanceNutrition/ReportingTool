@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using PpnReporting.BusinessLogic.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,16 +21,18 @@ namespace PpnReporting
     /// </summary>
     public partial class LabReportCover : UserControl
     {
-        protected double PanelWidth { get; set; }
-        protected double PanelHeight { get; set; }
-
+        public double PanelWidth { get; set; }
+        public double PanelHeight { get; set; }
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
 
         public LabReportCover()
         {
             InitializeComponent();
         }
 
-        public LabReportCover(double width, double height)
+        public LabReportCover(double width, double height, double horseOverallAverage, double allHorsesOverallAverage, Lab lab)
         {
             Height = height;
             Width = width;
@@ -36,8 +41,39 @@ namespace PpnReporting
             PanelHeight = height;
 
             InitializeComponent();
+
+            SeriesCollection = new SeriesCollection
+            {
+                new RowSeries
+                {
+                    Values = new ChartValues<double> {horseOverallAverage},
+                    StrokeThickness = 0,
+                    DataLabels = false,
+                    Title = lab.Horse.Name,
+                    
+                },
+                new RowSeries
+                {
+                    Values = new ChartValues<double> {allHorsesOverallAverage},
+                    StrokeThickness = 0,
+                    DataLabels = false,
+                    Title = "All",
+                    LabelPoint = null
+                }
+            };
+
+            //Formatter = value => null;
+
+            Labels = new[] { lab.Horse.Name, "All" };
+            DataContext = this;
         }
 
+
+        private void InitReportCoverLabProperties(Lab lab)
+        {
+            LabNumber.Text = lab.LabId.ToString();
+
+        }
 
     }
 }

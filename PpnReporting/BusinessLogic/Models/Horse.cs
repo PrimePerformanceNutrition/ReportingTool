@@ -12,5 +12,13 @@ namespace PpnReporting.BusinessLogic.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public int Age { get; set; }
+        public string Breed { get; set; }
+        public string Sex { get; set; }
+        public string Discipline { get; set; }
+        public string CustomerName { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string EmailAddress { get; set; }
     }
 }
