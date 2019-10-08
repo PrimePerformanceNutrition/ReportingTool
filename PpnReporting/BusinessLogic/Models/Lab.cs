@@ -40,7 +40,7 @@ namespace PpnReporting.BusinessLogic.Models
 
         public double Vanadium { get; set; }
 
-        public double Molybdemnum { get; set; }
+        public double Molybdenum { get; set; }
 
         public double Boron { get; set; }
 
