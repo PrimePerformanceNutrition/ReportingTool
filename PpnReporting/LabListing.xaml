@@ -29,7 +29,7 @@
                 <DataGridTextColumn Binding="{Binding Manganese}" Header="Maganese"/>
                 <DataGridTextColumn Binding="{Binding Chromium}" Header="Chromium"/>
                 <DataGridTextColumn Binding="{Binding Vanadium}" Header="Vanadium" />
-                <DataGridTextColumn Binding="{Binding Molybdemnum}" Header="Molybdemnum" />
+                <DataGridTextColumn Binding="{Binding Molybdenum}" Header="Molybdemnum" />
                 <DataGridTextColumn Binding="{Binding Boron}" Header="Boron" />
                 <DataGridTextColumn Binding="{Binding Iodine}" Header="Iodine" />
                 <DataGridTextColumn Binding="{Binding Lithium}" Header="Lithium" />

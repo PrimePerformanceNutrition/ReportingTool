@@ -51,23 +51,11 @@ namespace PpnReporting
                     Title = "All Horses Average",
                     Values = new ChartValues<double> { Math.Round(nutrientAverage, 2) },
                     FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
-                }//,
-                //new StepLineSeries
-                //{
-                //    Title = "High Tolerance",
-                //    Values = new ChartValues<double> { Math.Round(nutrientTolerances.HighTolerance, 2), Math.Round(nutrientTolerances.HighTolerance, 2) },
-                //    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
-                //},
-                //new StepLineSeries
-                //{
-                //    Title = "Low Tolerance",
-                //    Values = new ChartValues<double> { Math.Round(nutrientTolerances.LowTolerance, 2), Math.Round(nutrientTolerances.LowTolerance, 2) },
-                //    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
-                //}
+                }
             };
 
             DataContext = this;
-            Labels = new[] { nutrientName };
+            //Labels = null
             NutrientName = nutrientName;
 
             if (nutrientValue > nutrientTolerances.HighTolerance)
@@ -75,7 +63,14 @@ namespace PpnReporting
             else if (nutrientValue < nutrientTolerances.LowTolerance)
                 BulletPoints = bulletPoints.Where(bp => bp.Range == "Deficient").ToList();
             else
-                BulletPoints = null;
+                BulletPoints = new List<NutrientBulletPoint>
+                {
+                    new NutrientBulletPoint
+                    {
+                        NutrientName = nutrientName,
+                        BulletPoint = $"{nutrientName} is within tolerance"
+                    }
+                };
             
 
             Formatter = value => Math.Round(value, 2).ToString();
