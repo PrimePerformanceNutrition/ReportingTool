@@ -57,8 +57,9 @@ namespace PpnReporting
             DataContext = this;
             //Labels = null
             NutrientName = nutrientName;
-
-            if (nutrientValue > nutrientTolerances.HighTolerance)
+            if (bulletPoints.Any() && bulletPoints[0].Range == "Heavy Metal")
+                BulletPoints = bulletPoints;
+            else if (nutrientValue > nutrientTolerances.HighTolerance)
                 BulletPoints = bulletPoints.Where(bp => bp.Range == "Excessive").ToList();
             else if (nutrientValue < nutrientTolerances.LowTolerance)
                 BulletPoints = bulletPoints.Where(bp => bp.Range == "Deficient").ToList();

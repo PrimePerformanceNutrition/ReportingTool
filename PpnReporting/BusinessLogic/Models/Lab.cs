@@ -79,7 +79,7 @@ namespace PpnReporting.BusinessLogic.Models
         public double Cadmium { get; set; }
         public double Lead { get; set; }
         public double Mercury { get; set; }
-        public double Plantinum { get; set; }
+        public double Platinum { get; set; }
         public double Thallium { get; set; }
         public double Thorium { get; set; }
         public double Uranium { get; set; }
