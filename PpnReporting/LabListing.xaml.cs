@@ -32,7 +32,7 @@ namespace PpnReporting
         private void GenerateGraphButton_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
-            var tag = (Guid)button.Tag;
+            var tag = (int)button.Tag;
 
             NavigationService.Navigate( new LabReport(_ppnRepo, tag));
         }

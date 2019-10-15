@@ -10,7 +10,7 @@ namespace PpnReporting.BusinessLogic.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid LabId { get; set; }
+        public int LabId { get; set; }
 
         public string LabNumber { get; set; }
 

@@ -16,9 +16,6 @@ namespace PpnReporting.BusinessLogic
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Lab>().Property(p => p.LabId).HasDefaultValueSql("NEWSEQUENTIALID()");
-            modelBuilder.Entity<Horse>().Property(p => p.Id).HasDefaultValueSql("NEWSEQUENTIALID()");
         }
 
         public DbSet<Horse> Horses { get; set; }
@@ -40,9 +37,7 @@ namespace PpnReporting.BusinessLogic
             var configuration = builder.Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<PpnContext>()
-                .UseSqlServer(
-                    configuration.GetConnectionString("PrimePerformanceNutritionConnection"));
-
+                .UseSqlite(configuration.GetConnectionString("SQLiteConnection"));
             return new PpnContext(optionsBuilder.Options);
         }
     }

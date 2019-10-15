@@ -21,49 +21,41 @@ namespace PpnReporting
     {
         public IServiceProvider ServiceProvider { get; private set; }
         public IConfiguration Configuration { get; private set; }
-        
+
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            try
-            {
-                var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-                var builder = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", false, true)
-                    .AddJsonFile($"appsettings.{ environment }.json", true, true);
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-                Configuration = builder.Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{ environment }.json", true, true);
 
-                var serviceCollection = new ServiceCollection();
-                ConfigureServices(serviceCollection);
+            Configuration = builder.Build();
 
-                ServiceProvider = serviceCollection.BuildServiceProvider();
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
 
-                // Only run once to seed
-                //var planter = new Planter(ServiceProvider.GetRequiredService<PpnContext>());
-                //planter.Seed();
+            ServiceProvider = serviceCollection.BuildServiceProvider();
 
-                var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-                mainWindow.Show();
+            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
 
-                base.OnStartup(e);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }        
+            base.OnStartup(e);
+
+        }
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PpnContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("PrimePerformanceNutritionConnection")));
+            services.AddEntityFrameworkSqlite()
+                .AddDbContext<PpnContext>(options =>
+                    options.UseSqlite(
+                        Configuration.GetConnectionString("SQLiteConnection")));
 
             services.AddTransient(typeof(MainWindow));
-            services.AddTransient(typeof(LabListing));            
+            services.AddTransient(typeof(LabListing));
             services.AddTransient<IPpnRepo, PpnRepo>();
         }
 

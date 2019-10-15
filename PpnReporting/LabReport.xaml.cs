@@ -41,7 +41,7 @@ namespace PpnReporting
             InitializeComponent();
         }
 
-        public LabReport(IPpnRepo ppnRepo, Guid labId)
+        public LabReport(IPpnRepo ppnRepo, int labId)
         {
             _ppnRepo = ppnRepo;
             InitializeComponent();
