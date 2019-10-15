@@ -157,7 +157,7 @@ namespace PpnReporting
                 // TODO : figure out if there is a remainder to accomodate
             }
 
-            DocViewer.Document = fixedDocument;
+            DocViewer.Document = fixedDocument;           
             _printableDocument = fixedDocument;
         }
 

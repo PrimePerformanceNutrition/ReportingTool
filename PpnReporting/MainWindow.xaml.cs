@@ -22,10 +22,17 @@ namespace PpnReporting
         private LabListing _labListingPage;
         public MainWindow(LabListing labListingPage)
         {
-            _labListingPage = labListingPage;
-            InitializeComponent();
-            
-            MainFrame.Content = _labListingPage;
+            try
+            {
+                _labListingPage = labListingPage;
+                InitializeComponent();
+
+                MainFrame.Content = _labListingPage;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

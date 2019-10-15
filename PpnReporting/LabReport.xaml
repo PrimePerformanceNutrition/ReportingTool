@@ -15,6 +15,7 @@
     <ScrollViewer>
         <Grid x:Name="chartGrid">
             <DocumentViewer x:Name="DocViewer">
+              
                 <DocumentViewer.CommandBindings>
                     <CommandBinding Command="ApplicationCommands.Print" Executed="MenuItem_Click" />
                 </DocumentViewer.CommandBindings>

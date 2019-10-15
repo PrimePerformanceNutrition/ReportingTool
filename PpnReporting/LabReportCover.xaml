@@ -81,7 +81,7 @@
 
             <TextBlock
                 x:Name="Address"
-                Text="1234"
+                Text="Address: 1234"
                 FontFamily="{StaticResource OpenSansCondensedLight}"  
                 FontSize="12pt" />
 
@@ -137,7 +137,7 @@
                 TextAlignment="Center"
                 TextDecorations="Underline"/>
 
-            <lvc:CartesianChart 
+            <lvc:CartesianChart                 
                 Series="{Binding SeriesCollection}" 
                 LegendLocation="Top"
                 Margin="0, 75, 0, 0"

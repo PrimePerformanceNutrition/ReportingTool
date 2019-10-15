@@ -25,28 +25,35 @@ namespace PpnReporting
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            try
+            {
+                var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{ environment }.json", true, true);
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", false, true)
+                    .AddJsonFile($"appsettings.{ environment }.json", true, true);
 
-            Configuration = builder.Build();
+                Configuration = builder.Build();
 
-            var serviceCollection = new ServiceCollection();
-            ConfigureServices(serviceCollection);
+                var serviceCollection = new ServiceCollection();
+                ConfigureServices(serviceCollection);
 
-            ServiceProvider = serviceCollection.BuildServiceProvider();
+                ServiceProvider = serviceCollection.BuildServiceProvider();
 
-            // Only run once to seed
-            //var planter = new Planter(ServiceProvider.GetRequiredService<PpnContext>());
-            //planter.Seed();
+                // Only run once to seed
+                //var planter = new Planter(ServiceProvider.GetRequiredService<PpnContext>());
+                //planter.Seed();
 
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+                var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+                mainWindow.Show();
 
-            base.OnStartup(e);
+                base.OnStartup(e);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }        
 
         private void ConfigureServices(IServiceCollection services)

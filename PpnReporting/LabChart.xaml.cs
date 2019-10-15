@@ -54,8 +54,7 @@ namespace PpnReporting
                 }
             };
 
-            DataContext = this;
-            //Labels = null
+            DataContext = this;            
             NutrientName = nutrientName;
             if (bulletPoints.Any() && bulletPoints[0].Range == "Heavy Metal")
                 BulletPoints = bulletPoints;

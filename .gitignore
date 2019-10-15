@@ -15,3 +15,6 @@
 /PpnReporting/obj/Debug/netcoreapp3.0
 /PpnReporting/obj
 /PpnReporting/.vs/PpnReporting
+/PpnReporting/bin/Release/netcoreapp3.0/publish
+/PpnReporting/Properties/PublishProfiles
+/PpnReporting/bin/Debug

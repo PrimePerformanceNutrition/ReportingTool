@@ -42,6 +42,19 @@ namespace PpnReporting
 
             InitializeComponent();
 
+            LabNumber.Text =    $"LAB #: {lab.LabNumber}";
+            SampleID.Text =     $"Sample ID: {lab.SampleId.Replace("\\", "")}";
+            HorseName.Text =    $"Horse Name {lab.Horse.Name}";
+            Age.Text =          $"Age: {lab.Horse.Age.ToString()}";
+            Breed.Text =        $"Breed: {lab.Horse.Breed}";
+            Sex.Text =          $"Sex: {lab.Horse.Sex}";
+            Discipline.Text =   $"Discipline: {lab.Horse.Discipline}";
+            CustomerName.Text = $"Customer Name: {lab.Horse.CustomerName}";
+            Address.Text =      $"Address: {lab.Horse.Address}";
+            PhoneNumber.Text =  $"Phone Number: {lab.Horse.PhoneNumber}";
+            EmailAddress.Text = $"Email Address: {lab.Horse.EmailAddress}";
+
+
             SeriesCollection = new SeriesCollection
             {
                 new RowSeries
@@ -50,30 +63,18 @@ namespace PpnReporting
                     StrokeThickness = 0,
                     DataLabels = false,
                     Title = lab.Horse.Name,
-                    
                 },
                 new RowSeries
                 {
                     Values = new ChartValues<double> {allHorsesOverallAverage},
                     StrokeThickness = 0,
                     DataLabels = false,
-                    Title = "All",
-                    LabelPoint = null
+                    Title = "All"                    
                 }
-            };
-
-            //Formatter = value => null;
+            };            
 
             Labels = new[] { lab.Horse.Name, "All" };
-            DataContext = this;
+            DataContext = this;            
         }
-
-
-        private void InitReportCoverLabProperties(Lab lab)
-        {
-            LabNumber.Text = lab.LabId.ToString();
-
-        }
-
     }
 }
