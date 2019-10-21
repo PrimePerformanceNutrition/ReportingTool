@@ -68,7 +68,12 @@ namespace PpnReporting
                     || property.Name == nameof(lab.Horse) 
                     || property.Name == nameof(lab.LabDate) 
                     || property.Name == nameof(lab.LabNumber) 
-                    || property.Name == nameof(lab.SampleId))
+                    || property.Name == nameof(lab.SampleId)
+                    || property.Name == nameof(lab.Zirconium)
+                    || property.Name == nameof(lab.Strontium)
+                    || property.Name == nameof(lab.Rubidium)
+                    || property.Name == nameof(lab.Platinum)
+                    || property.Name == nameof(lab.Thallium))
                     continue;
 
                 var propertyValue = (double)property.GetValue(lab);
@@ -84,8 +89,12 @@ namespace PpnReporting
                 });
             }
 
-            // TODO: Get the Average of all of the property values of all horses, then to an average of that average
-            var allHorsesOverallAverage = allHorseNurtientAverages.Average();
+            var droppedHightestAndLowest = allHorseNurtientAverages.OrderBy(x => x).ToList();
+            droppedHightestAndLowest.RemoveAt(0);
+            droppedHightestAndLowest.OrderByDescending(x => x).ToList();
+            droppedHightestAndLowest.RemoveAt(0);
+            
+            var allHorsesOverallAverage = droppedHightestAndLowest.Average();
 
             // TODO : Take an average of all of the property values
             var horseaverage = propertyValues.Average();
@@ -130,12 +139,11 @@ namespace PpnReporting
                 Width = fixedDocument.DocumentPaginator.PageSize.Width
             };
 
+            foreach(var chart in labCharts)
+            {
+                stackPanel.Children.Add(chart.LabChart);
 
-            for (var i = 0; i < labCharts.Count; i++)
-            {                
-                stackPanel.Children.Add(labCharts[i].LabChart);                           
-
-                if ((i +1) % 3 == 0) 
+                if(stackPanel.Children.Count == 3)
                 {
                     fixedPage.Children.Add(stackPanel);
                     ((IAddChild)pageContent).AddChild(fixedPage);
@@ -153,10 +161,25 @@ namespace PpnReporting
                         Width = fixedDocument.DocumentPaginator.PageSize.Width
                     };
                 }
-
-                // TODO : figure out if there is a remainder to accomodate
             }
 
+            
+            // handle end of last page
+            var textBlock = new TextBlock
+            {
+                Text = "Thank you for trusting Prime Performance Nutrition to generate this report. Please use code HTA19 to receive 10% off your next order at www.primeperformancenutrition.com",
+                TextAlignment = TextAlignment.Center,
+                TextWrapping = TextWrapping.Wrap,
+                FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light"),
+            };
+
+            stackPanel.Children.Add(textBlock);
+
+            // add the last remainder
+            fixedPage.Children.Add(stackPanel);
+            ((IAddChild)pageContent).AddChild(fixedPage);
+            fixedDocument.Pages.Add(pageContent);
+ 
             DocViewer.Document = fixedDocument;           
             _printableDocument = fixedDocument;
         }
@@ -182,17 +205,23 @@ namespace PpnReporting
 
             if (dialog.ShowDialog() == false)
                 return;
+            try
+            {
+                string targetFile = System.IO.Path.GetTempFileName();
+                System.Diagnostics.Debug.Print(targetFile);
 
-            string targetFile = System.IO.Path.GetTempFileName();
-            System.Diagnostics.Debug.Print(targetFile);
+                var xpsDocument = new XpsDocument(targetFile, FileAccess.ReadWrite);
+                var xpsWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
+                xpsWriter.Write(_printableDocument);
+                xpsDocument.Close();
 
-            var xpsDocument = new XpsDocument(targetFile, FileAccess.ReadWrite);
-            var xpsWriter = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
-            xpsWriter.Write(_printableDocument);
-            xpsDocument.Close();
-
-            var pdfXpsDoc = PdfSharp.Xps.XpsModel.XpsDocument.Open(targetFile);
-            PdfSharp.Xps.XpsConverter.Convert(pdfXpsDoc, dialog.FileName, 0);
+                var pdfXpsDoc = PdfSharp.Xps.XpsModel.XpsDocument.Open(targetFile);
+                PdfSharp.Xps.XpsConverter.Convert(pdfXpsDoc, dialog.FileName, 0);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
             
             // TODO: Delete xps
         }

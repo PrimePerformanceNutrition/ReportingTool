@@ -23,13 +23,17 @@
             Margin="0, 0, 20, 0"/>
         
         <TextBlock 
-            Text="20573 Country Road 297 Cosby MO 64436 USA (888) 457-4235 info@primeperformancenutrition.com" 
+            Text="20573 County Road 297 Cosby MO 64436 USA (888) 457-4235 info@primeperformancenutrition.com" 
             TextAlignment="Center"
             FontFamily="{StaticResource OpenSansCondensedLight}" 
             FontSize="16pt"/>
 
         <StackPanel 
             Margin="0, 50, 0, 0">
+            <TextBlock
+                x:Name="ReportDate"
+                FontFamily="{StaticResource OpenSansCondensedLight}"
+                FontSize="12pt" />
             
             <TextBlock
                 x:Name="LabNumber"
@@ -144,7 +148,8 @@
                 MinHeight="100px"
                 DisableAnimations="True"
                 HorizontalAlignment="Center"
-                MinWidth="400px">
+                MinWidth="400px"
+                DataTooltip="{x:Null}">
 
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis ShowLabels="False">
@@ -163,6 +168,14 @@
                 </lvc:CartesianChart.AxisY>
 
             </lvc:CartesianChart>
+
+            <TextBlock
+                Text="This rating is reporting your horses overall score compared to the average overall scoring of those horses in the database."
+                FontFamily="{StaticResource OpenSansCondensedLight}"  
+                TextWrapping="Wrap"
+                FontWeight="Bold"
+                FontSize="10pt" 
+                TextAlignment="Center" />
         </StackPanel>
 
     </StackPanel>

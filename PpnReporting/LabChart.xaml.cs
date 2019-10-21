@@ -32,11 +32,13 @@ namespace PpnReporting
 
         public LabChart(IPpnRepo ppnRepo, string nutrientName, double nutrientValue, string horseName, List<NutrientBulletPoint> bulletPoints)
         {
-            InitializeComponent();
+            
 
             _ppnRepo = ppnRepo;
             var nutrientAverage = _ppnRepo.NutrientAverage(nutrientName);
             var nutrientTolerances = _ppnRepo.HighLowTolerance(nutrientAverage);
+
+            
 
             SeriesCollection = new SeriesCollection
             {
@@ -44,17 +46,19 @@ namespace PpnReporting
                 {
                     Title = horseName,
                     Values = new ChartValues<double> { Math.Round(nutrientValue, 2) },
-                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
+                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light"),
+                    DataLabels = true
                 },
                 new ColumnSeries
                 {
                     Title = "All Horses Average",
                     Values = new ChartValues<double> { Math.Round(nutrientAverage, 2) },
-                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light")
+                    FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light"),
+                    DataLabels = true
                 }
             };
 
-            DataContext = this;            
+            DataContext = this;
             NutrientName = nutrientName;
             if (bulletPoints.Any() && bulletPoints[0].Range == "Heavy Metal")
                 BulletPoints = bulletPoints;
@@ -72,9 +76,31 @@ namespace PpnReporting
                     }
                 };
             
-
+            
             Formatter = value => Math.Round(value, 2).ToString();
+            //Labels = new string[] { nutrientValue.ToString(), Math.Round(nutrientAverage,0).ToString() };
+
+            InitializeComponent();
+
+            if (nutrientValue != 0 && nutrientAverage != 0)
+            {
+                NutrientChart.AxisY.Clear();
+                NutrientChart.AxisY.Add(
+                    new Axis
+                    {
+                        Separator = new LiveCharts.Wpf.Separator
+                        {
+                            Step = nutrientAverage > nutrientValue
+                                ? nutrientAverage * 0.30
+                                : nutrientValue * 0.30
+                        },
+                        LabelFormatter = Formatter
+                    }
+                );
+            }
         }
+
+
 
         public List<NutrientBulletPoint> BulletPoints { get; set; }
         public SeriesCollection SeriesCollection { get; set; }
