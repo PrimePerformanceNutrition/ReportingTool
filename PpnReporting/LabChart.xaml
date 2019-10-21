@@ -22,7 +22,8 @@
                 <ColumnDefinition Width="50*" />
             </Grid.ColumnDefinitions>
 
-            <lvc:CartesianChart 
+            <lvc:CartesianChart        
+                x:Name="NutrientChart"
                 Grid.Column="0" 
                 Series="{Binding SeriesCollection}" 
                 LegendLocation="Left" 
@@ -31,12 +32,17 @@
                 FontFamily="./Fonts/#Open Sans Condensed Light"
                 Margin="0, 0, 40, 0"
                 Hoverable="False"
-                DataTooltip="{x:Null}">
+                DataTooltip="{x:Null}"
+                Pan="Y">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis ShowLabels="False" IsEnabled="False"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis LabelFormatter="{Binding Formatter}" ></lvc:Axis>
+                    <lvc:Axis LabelFormatter="{Binding Formatter}">
+                        <!--<lvc:Axis.Separator>
+                            <lvc:Separator Step="400"/>
+                        </lvc:Axis.Separator>-->
+                    </lvc:Axis>
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
 

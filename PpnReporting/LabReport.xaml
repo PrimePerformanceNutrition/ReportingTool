@@ -18,7 +18,7 @@
               
                 <DocumentViewer.CommandBindings>
                     <CommandBinding Command="ApplicationCommands.Print" Executed="MenuItem_Click" />
-                </DocumentViewer.CommandBindings>
+                </DocumentViewer.CommandBindings>                
             </DocumentViewer>
         </Grid>
     </ScrollViewer>
