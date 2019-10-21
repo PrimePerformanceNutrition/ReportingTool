@@ -42,6 +42,7 @@ namespace PpnReporting
 
             InitializeComponent();
 
+            ReportDate.Text = $"Report Date: {lab.LabDate}";
             LabNumber.Text =    $"LAB #: {lab.LabNumber}";
             SampleID.Text =     $"Sample ID: {lab.SampleId.Replace("\\", "")}";
             HorseName.Text =    $"Horse Name {lab.Horse.Name}";
@@ -69,11 +70,11 @@ namespace PpnReporting
                     Values = new ChartValues<double> {allHorsesOverallAverage},
                     StrokeThickness = 0,
                     DataLabels = false,
-                    Title = "All"                    
+                    Title = "All horses"                    
                 }
             };            
 
-            Labels = new[] { lab.Horse.Name, "All" };
+            Labels = new[] { lab.Horse.Name, "All horses" };
             DataContext = this;            
         }
     }
