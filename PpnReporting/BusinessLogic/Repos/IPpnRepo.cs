@@ -10,7 +10,7 @@ namespace PpnReporting.BusinessLogic.Repos
     public interface IPpnRepo
     {
         List<Lab> GetLabs();
-        Lab GetLab(Guid labId);
+        Lab GetLab(int labId);
         double NutrientAverage(string nutrientName);
         ToleranceViewModel HighLowTolerance(double nutrientAverage);
         List<NutrientBulletPoint> GetNutrientBulletPoints(string nutrient);

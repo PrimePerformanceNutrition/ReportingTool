@@ -25,7 +25,7 @@ namespace PpnReporting.BusinessLogic.Repos
                 .ToList();
         }
 
-        public Lab GetLab(Guid labId)
+        public Lab GetLab(int labId)
             => _db.Labs
             .Include(lab => lab.Horse)
             .FirstOrDefault(lab => lab.LabId == labId);

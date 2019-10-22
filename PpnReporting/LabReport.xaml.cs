@@ -41,7 +41,7 @@ namespace PpnReporting
             InitializeComponent();
         }
 
-        public LabReport(IPpnRepo ppnRepo, Guid labId)
+        public LabReport(IPpnRepo ppnRepo, int labId)
         {
             _ppnRepo = ppnRepo;
             InitializeComponent();
@@ -215,8 +215,11 @@ namespace PpnReporting
                 xpsWriter.Write(_printableDocument);
                 xpsDocument.Close();
 
-                var pdfXpsDoc = PdfSharp.Xps.XpsModel.XpsDocument.Open(targetFile);
-                PdfSharp.Xps.XpsConverter.Convert(pdfXpsDoc, dialog.FileName, 0);
+                using (var filestream = File.Open(targetFile, FileMode.Open, FileAccess.ReadWrite))
+                {
+                    var pdfXpsDoc = PdfSharp.Xps.XpsModel.XpsDocument.Open(filestream);
+                    PdfSharp.Xps.XpsConverter.Convert(pdfXpsDoc, dialog.FileName, 0);
+                }
             }
             catch(Exception ex)
             {
