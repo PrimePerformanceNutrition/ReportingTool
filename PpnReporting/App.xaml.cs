@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -49,8 +50,8 @@ namespace PpnReporting
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkSqlite()
-                .AddDbContext<PpnContext>(options =>
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            services.AddDbContext<PpnContext>(options =>
                     options.UseSqlite(
                         Configuration.GetConnectionString("SQLiteConnection")));
 
