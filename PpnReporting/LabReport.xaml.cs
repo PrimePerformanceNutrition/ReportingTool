@@ -81,7 +81,7 @@ namespace PpnReporting
 
                 allHorseNurtientAverages.Add(_ppnRepo.NutrientAverage(property.Name));
 
-                // TODO Add bullet points
+                
                 labCharts.Add(new LabNutrientViewModel
                 {
                     LabChart = new LabChart(_ppnRepo, property.Name, propertyValue, horseName,
@@ -139,8 +139,14 @@ namespace PpnReporting
                 Width = fixedDocument.DocumentPaginator.PageSize.Width
             };
 
+            
+
             foreach(var chart in labCharts)
             {
+                // Addition of Heavy Metal Intro TODO : This is dirty. But, it gets the job done
+                if(chart.LabChart.NutrientName == "Aluminum")
+                    stackPanel.Children.Add(CreateHeavyMetalsIntroTextBlock());
+
                 stackPanel.Children.Add(chart.LabChart);
 
                 if(stackPanel.Children.Count == 3)
@@ -167,11 +173,18 @@ namespace PpnReporting
             // handle end of last page
             var textBlock = new TextBlock
             {
-                Text = "Thank you for trusting Prime Performance Nutrition to generate this report. Please use code HTA19 to receive 10% off your next order at www.primeperformancenutrition.com",
+                //Text = "Thank you for trusting Prime Performance Nutrition to generate this report. Please use code HTA19 to receive 10% off your next order at www.primeperformancenutrition.com",
                 TextAlignment = TextAlignment.Center,
                 TextWrapping = TextWrapping.Wrap,
                 FontFamily = new FontFamily("./Fonts/#Open Sans Condensed Light"),
             };
+
+            textBlock.Inlines.Add("Thank you for trusting Prime Performance Nutrition to generate this report. Please use code ");
+            textBlock.Inlines.Add(new Run("HTA19 ") { Foreground = Brushes.Red });
+            textBlock.Inlines.Add("to ");
+            textBlock.Inlines.Add(new Run("receive 10% off your next order ") { TextDecorations = TextDecorations.Underline });
+            textBlock.Inlines.Add("at www.primeperformancenutrition.com");
+
 
             stackPanel.Children.Add(textBlock);
 
@@ -182,6 +195,26 @@ namespace PpnReporting
  
             DocViewer.Document = fixedDocument;           
             _printableDocument = fixedDocument;
+        }
+
+        private StackPanel CreateHeavyMetalsIntroTextBlock()
+        {
+            var stackPanel = new StackPanel
+            {
+                Margin = new Thickness(5)
+            };
+            var textBlock = new TextBlock
+            {
+                Text = "Toxic Heavy Metals come from multiple sources from industrial exposures, fertilizers, lead water pipes, anti-caking material used in feeds, compounded drugs, packaged goods, etc. " +
+                "The horse cannot metabolize heavy metals which means over a period of time the exposure can result in maldistribution of elements and/or toxicity",
+                FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Open Sans Condensed Light"),
+                TextWrapping = TextWrapping.Wrap,
+                TextAlignment = TextAlignment.Center,
+                FontSize = 14
+            };
+
+            stackPanel.Children.Add(textBlock);
+            return stackPanel;
         }
 
         private FixedPage CreateFixedPage(double width, double height)

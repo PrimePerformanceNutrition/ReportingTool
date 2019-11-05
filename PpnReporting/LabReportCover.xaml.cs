@@ -42,7 +42,7 @@ namespace PpnReporting
 
             InitializeComponent();
 
-            ReportDate.Text = $"Report Date: {lab.LabDate}";
+            ReportDate.Text =   $"Report Date: {lab.LabDate.ToString("MM/dd/yyyy")}";
             LabNumber.Text =    $"LAB #: {lab.LabNumber}";
             SampleID.Text =     $"Sample ID: {lab.SampleId.Replace("\\", "")}";
             HorseName.Text =    $"Horse Name {lab.Horse.Name}";

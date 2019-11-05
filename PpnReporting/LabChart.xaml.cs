@@ -24,6 +24,7 @@ namespace PpnReporting
     public partial class LabChart : UserControl
     {
         private readonly IPpnRepo _ppnRepo;
+        public string Nutrient { get; private set; }
 
         public LabChart()
         {
@@ -37,7 +38,7 @@ namespace PpnReporting
             _ppnRepo = ppnRepo;
             var nutrientAverage = _ppnRepo.NutrientAverage(nutrientName);
             var nutrientTolerances = _ppnRepo.HighLowTolerance(nutrientAverage);
-
+            Nutrient = nutrientName;
             
 
             SeriesCollection = new SeriesCollection
